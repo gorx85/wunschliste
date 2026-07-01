@@ -847,44 +847,59 @@ a {
    Large Desktop (1024px+)
    =========================== */
 @media (min-width: 1024px) {
-    .has-sidebar .sidebar {
+    :root {
+        --header-height: 56px;
+    }
+
+    /* Header spans full width and stays fixed at the top */
+    .app-header {
         position: fixed;
-        left: 0;
         top: 0;
-        box-shadow: 1px 0 3px rgba(0, 0, 0, 0.05);
+        left: 0;
+        right: 0;
+        height: var(--header-height);
+        z-index: 300;
     }
 
-    .has-sidebar .sidebar-overlay {
-        display: none;
-    }
-
+    /* Hide hamburger on desktop */
     .has-sidebar .menu-toggle {
         display: none;
     }
 
-    .has-sidebar .sidebar-close {
+    /* Sidebar starts below the header */
+    .has-sidebar .sidebar {
+        position: fixed;
+        left: 0;
+        top: var(--header-height);
+        height: calc(100% - var(--header-height));
+        box-shadow: 1px 0 3px rgba(0, 0, 0, 0.05);
+    }
+
+    /* No overlay on desktop */
+    .has-sidebar .sidebar-overlay {
         display: none;
     }
 
-    .has-sidebar .sidebar-title-mobile {
+    /* Hide sidebar header (close button, title) — not needed on desktop */
+    .has-sidebar .sidebar-header {
         display: none;
     }
 
-    .has-sidebar .sidebar-title-desktop {
-        display: inline;
-    }
-
-    .has-sidebar .app-header {
-        display: none;
-    }
-
+    /* User menu: show in top-right of header, hide duplicate in sidebar */
     .user-menu-sidebar {
-        display: block;
+        display: none;
     }
 
+    /* Main content pushed right of sidebar and below header */
     .has-sidebar .content {
         margin-left: 300px;
+        margin-top: var(--header-height);
         max-width: 900px;
         padding-top: 1.5rem;
+    }
+
+    /* Non-logged-in: content just pushed below header */
+    body:not(.has-sidebar) .content {
+        margin-top: var(--header-height);
     }
 }
