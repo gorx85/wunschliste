@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wunschliste</title>
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=8">
     <meta name="theme-color" content="#4a4aaa">
 </head>
 <body class="<?= $user ? 'has-sidebar' : '' ?>">
@@ -72,6 +72,7 @@
     <?php endif; ?>
 
     <main class="content">
+        <div class="content-inner">
         <?php if ($flashMessage): ?>
         <div class="flash-message"><?= h($flashMessage) ?></div>
         <?php endif; ?>
@@ -105,6 +106,7 @@
                 break;
         }
         ?>
+        </div>
     </main>
 
     <div class="modal-overlay" id="modalOverlay">

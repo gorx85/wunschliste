@@ -890,16 +890,45 @@ a {
         display: none;
     }
 
-    /* Main content pushed right of sidebar and below header */
-    .has-sidebar .content {
-        margin-left: 300px;
-        margin-top: var(--header-height);
-        max-width: 900px;
-        padding-top: 1.5rem;
+    /* Prevent the document itself from scrolling — content area scrolls instead */
+    html, body {
+        height: 100%;
+        overflow: hidden;
     }
 
-    /* Non-logged-in: content just pushed below header */
+    /* Main content: scrollable area below header, right of sidebar */
+    .has-sidebar .content {
+        position: fixed;
+        top: var(--header-height);
+        left: 300px;
+        right: 0;
+        bottom: 0;
+        overflow-y: auto;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Non-logged-in: full-width scrollable area below header */
     body:not(.has-sidebar) .content {
-        margin-top: var(--header-height);
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow-y: auto;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .content-inner {
+        max-width: 800px;
+        padding: 1.5rem 2rem;
+    }
+
+    /* Centre content on pages without sidebar (login, register) */
+    body:not(.has-sidebar) .content-inner {
+        margin: 0 auto;
     }
 }
