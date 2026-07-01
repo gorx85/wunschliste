@@ -1,0 +1,5 @@
+# Local credentials — never commit these
+config.local.php
+
+# Compiled archive
+wunschliste.tar.gz
